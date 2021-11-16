@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Marathon.pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,7 +69,7 @@ namespace Marathon
 				} 
 				else
 				{
-					NavigationService.Navigate(new main_page());
+					NavigationService.Navigate(new sponsorship__confirmation());
 				}
 			};
 
