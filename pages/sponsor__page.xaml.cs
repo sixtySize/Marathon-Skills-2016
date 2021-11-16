@@ -26,13 +26,9 @@ namespace Marathon
 		{
 			InitializeComponent();
 
-			btn__back.Click += (s, e) => { NavigationService.Navigate(new main_page()); };
+			btn__back.Click	+= (s, e) => { NavigationService.Navigate(new main_page()); };
 			btn__cancel.Click += (s, e) => { NavigationService.Navigate(new main_page()); };
-
-			tBox__money.MaxLength = 5;
-			tBox__money.TextChanged += (s, e) => { dollar.Content = tBox__money.Text; };
-
-			btn__minus.Click += (s, e) =>
+			btn__minus.Click	+= (s, e) =>
 			{
 				if (tBox__money.Text == "")
 				{
@@ -46,7 +42,7 @@ namespace Marathon
 					}
 				}
 			};
-			btn__plus.Click += (s, e) =>
+			btn__plus.Click	+= (s, e) =>
 			{
 				if (tBox__money.Text == "")
 				{
@@ -57,10 +53,30 @@ namespace Marathon
 					tBox__money.Text = (int.Parse(tBox__money.Text) + 10).ToString();
 				}
 			};
+			btn__pay.Click		+= (s, e) =>
+			{
+				if (tbox__name.Text == "" ||
+					 cbox__runner.Text == "" ||
+					 tbox__ownercard.Text == "" ||
+					 tbox__cardnumber.Text == "" ||
+					 tbox__monthcard.Text == "" ||
+					 tbox__yearcard.Text == "" ||
+					 tbox__CVCcard.Text == "" ||
+					 tBox__money.Text == "0")
+				{
+					MessageBox.Show("Не все поля заполнены или не введена сумма пожертвоварния!");
+				} 
+				else
+				{
+					NavigationService.Navigate(new main_page());
+				}
+			};
+
+			tBox__money.TextChanged += (s, e) => { dollar.Content = tBox__money.Text; };
 
 			DispatcherTimer timer = new DispatcherTimer();
-			timer.Tick += new EventHandler(timer_Tick);
-			timer.Interval = new TimeSpan(0, 0, 1);
+			timer.Tick		+= new EventHandler(timer_Tick);
+			timer.Interval	 = new TimeSpan(0, 0, 1);
 			timer.Start();
 		}
 		private void timer_Tick(object sender, EventArgs e)
